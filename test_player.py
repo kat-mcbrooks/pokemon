@@ -1,7 +1,8 @@
+from re import M
 import pytest
 from player import Player, InsufficientAmount
 
-
+# with fixtures, each test is provided with a newly-initialized Wallet instance, and not one that has been used in another test.
 @pytest.fixture
 def empty_player():
     """returns a player instance with a zero balance"""
@@ -12,6 +13,20 @@ def empty_player():
 def player():
     """Returns a Player instance with a balance of 20"""
     return Player(20)
+
+
+@pytest.mark.parametrize(
+    "earned,spent,expected",
+    [
+        (30, 10, 20),
+        (20, 2, 18),
+    ],
+)
+def test_transations(earned, spent, expected):
+    my_player = Player()
+    my_player.add_cash(earned)
+    my_player.spend_cash(spent)
+    assert my_player.balance == expected
 
 
 def test_default_initial_amount(empty_player):
