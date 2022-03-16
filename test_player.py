@@ -2,27 +2,35 @@ import pytest
 from player import Player, InsufficientAmount
 
 
-def test_default_initial_amount():
-    player = Player()
-    assert player.balance == 0
+@pytest.fixture
+def empty_player():
+    """returns a player instance with a zero balance"""
+    return Player()
 
 
-def test_add_cash():
-    player = Player()
+@pytest.fixture
+def player():
+    """Returns a Player instance with a balance of 20"""
+    return Player(20)
+
+
+def test_default_initial_amount(empty_player):
+    assert empty_player.balance == 0
+
+
+def test_add_cash(player):
     player.add_cash(10)
-    assert player.balance == 10
+    assert player.balance == 30
 
 
-def test_spend_cash():
-    player = Player(10)
+def test_spend_cash(player):
     player.spend_cash(5)
-    assert player.balance == 5
+    assert player.balance == 15
 
 
-def test_spend_cash_raises_error_if_insufficient_funds():
-    player = Player()
+def test_spend_cash_raises_error_if_insufficient_funds(player):
     with pytest.raises(InsufficientAmount):
-        player.spend_cash(5)
+        player.spend_cash(25)
 
 
 # def capital_case(x):
