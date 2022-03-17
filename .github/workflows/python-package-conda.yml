@@ -1,6 +1,6 @@
 name: Python Package using Conda
 
-on: [push]
+# on: [push]
 
 jobs:
   build-linux:
@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.10
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
           python-version: "3.9"
