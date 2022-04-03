@@ -23,13 +23,17 @@ def venusaur():
 # )
 
 
-def test_has_hp(venusaur):
-    assert venusaur.hp == 80
+def test_get_stat_hp(venusaur):
+    assert venusaur.get_stat("hp") == 80
 
 
-def test_has_name(squirtle):
-    assert squirtle.name == "squirtle"
+def test_get_stat_hp(squirtle):
+    assert squirtle.get_stat("hp") == 44
 
 
-# def test_compare_pokemon_stat(squirtle, venusaur, 'hp'):
-#   assert squirtle.compare(venusaur, hp)
+def test_get_stat_name(squirtle):
+    assert squirtle.get_stat("name") == "squirtle"
+
+
+def test_compare_pokemon_stat(squirtle, venusaur):
+    assert squirtle.compare(venusaur, "hp") == "venusaur wins!"
