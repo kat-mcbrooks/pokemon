@@ -1,4 +1,3 @@
-from re import M
 import pytest
 from player import Player, InsufficientAmount
 

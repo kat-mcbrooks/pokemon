@@ -18,12 +18,14 @@ class Pokemon:
             "weight": pokemon_data["weight"],
             "speed": pokemon_data["stats"][5]["base_stat"],
         }
-        # self.name = pokemon["name"]
-        # self.hp = pokemon["stats"][0]["base_stat"]
-        # self.experience = pokemon["base_experience"]
-        # self.height = pokemon["height"]
-        # self.weight = pokemon["weight"]
-        # self.speed = pokemon["stats"][5]["base_stat"]  # access the speed base stat from within the stats key
 
     def get_stat(self, stat):
         return self.data[stat]
+
+    def compare_stat(self, other, stat):
+        my_stat = self.get_stat(stat)
+        opponent_stat = other.get_stat(stat)
+        print(my_stat)
+        # print(opponent_stat)
+        # if self.data[stat] > other.data[stat]:
+        #     return f'{self["name"]} wins!'
