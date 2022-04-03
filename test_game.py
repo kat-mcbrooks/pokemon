@@ -26,20 +26,11 @@ def test_generate_hands_gives_10_cards(game):
     assert len(game.player2.cards) == 10
 
 
-def test_select_card(game):
+def test_compare_pokemon_stat(game):
     game.generate_hands()
-    # print(game.player1.cards)
-    # print(game.player1.cards[0])
-    current_cards = game.select_cards(0)
-    print(current_cards)
-    assert current_cards[0]["name"] == "blastoise"
-    assert current_cards[1]["name"] == "vaporeon"
-
-
-# def test_compare_pokemon_stat(game):
-#    game.generate_hands()
-#    game.compare('hp')
-
-# def test_compare_pokemon_stat(game):
-#     game.compare_stat("hp")
-#     # assert squirtle.compare_stat(venusaur, "hp") == "venusaur wins!"
+    # game.select_cards
+    print(game.player1.cards[0]["name"])
+    print(game.player2.cards[0]["name"])
+    print(game.player1.cards[0]["hp"])
+    print(game.player2.cards[0]["hp"])
+    assert game.compare_stat("hp") == "player 2 wins!"

@@ -23,24 +23,15 @@ class Game:
         print(pokemon.data["name"])
         return pokemon.data["name"]
 
-    def select_cards(self, idx):
-        return [self.player1.cards[idx], self.player2.cards[idx]]
-
     def compare_stat(self, stat):
-        my_poke = self.get_pokemon()
-        opponent_poke = self.get_pokemon()
-        if my_poke.data[stat] > opponent_poke.data[stat]:
-            print("You win!")
-
-
-# game = Game()
-# game.get_pokemon()
-
-# return
-#   def compare_stat(self, other, stat):
-#       my_stat = self.get_stat(stat)
-#       opponent_stat = other.get_stat(stat)
-#       print(my_stat)
-#       # print(opponent_stat)
-#       # if self.data[stat] > other.data[stat]:
-#       #     return f'{self["name"]} wins!'
+        player_1_stat = self.player1.cards[0][stat]
+        player_2_stat = self.player2.cards[0][stat]
+        if player_1_stat > player_2_stat:
+            print("player 1 wins!")
+            return "player 1 wins"
+        elif player_1_stat < player_2_stat:
+            print("player 2 wins!")
+            return "player 2 wins!"
+        else:
+            print("it is a draw!")
+            return "it is a draw!"
