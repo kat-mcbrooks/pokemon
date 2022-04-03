@@ -42,4 +42,11 @@ def test_end_turn_removes_losing_card_from_loser_deck(game):
     assert game.player2.cards.count(losing_card) == 0
 
 
-# def test_play
+def test_update_points_player1(game):
+    game.update_points(game.player1)
+    assert game.player1.points == 10
+
+
+def test_update_points_player2(game):
+    game.update_points(game.player2)
+    assert game.player2.points == 10

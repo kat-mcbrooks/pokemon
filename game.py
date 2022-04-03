@@ -12,8 +12,16 @@ class Game:
 
     def play(self):
         self.generate_hands()
-        winner = self.compare_stat("hp")
-        self.update.decks()
+        while (self.player1.points < 50) and (self.player2.points < 50):
+            winner = self.compare_stat("hp")
+            self.update_decks(winner)
+            self.update_points
+
+    def update_points(self, winning_player):
+        if winning_player == self.player1:
+            self.player1.points += 10
+        elif winning_player == self.player2:
+            self.player2.points += 10
 
     def generate_hands(self):
         self.deck.add_cards()
