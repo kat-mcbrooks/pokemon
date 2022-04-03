@@ -24,7 +24,7 @@ def test_generate_hands_gives_10_cards_player2(game):
 
 def test_compare_pokemon_stat(game):
     assert (
-        game.compare_stat("hp") == "player 1 wins!"
+        game.compare_stat("hp") == game.player1
     )  # thanks to the random.seed, we guarantee that player 1 card is always clefairy (hp:70 ) and player 2 card is always pikachu (hp:35 )
 
 
@@ -40,3 +40,6 @@ def test_end_turn_removes_losing_card_from_loser_deck(game):
     print(game.player2.cards)
     game.update_decks(game.player1)
     assert game.player2.cards.count(losing_card) == 0
+
+
+# def test_play

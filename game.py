@@ -10,6 +10,11 @@ class Game:
         self.player2 = player2
         self.deck = deck
 
+    def play(self):
+        self.generate_hands()
+        winner = self.compare_stat("hp")
+        self.update.decks()
+
     def generate_hands(self):
         self.deck.add_cards()
         first_half = self.deck.cards[:10]
@@ -31,11 +36,11 @@ class Game:
         player1_stat = self.player1.cards[0][stat]
         player2_stat = self.player2.cards[0][stat]
         if player1_stat > player2_stat:
-            print("player 1 wins!")
-            return "player 1 wins!"  # return self.player2.cards[0]
+            print(f"player 1 wins {self.player2.cards[0]['name']}!")
+            return self.player1  # return self.player2.cards[0]
         elif player1_stat < player2_stat:
-            print("player 2 wins!")
-            return "player 2 wins!"  # return self.player1.cards[0]
+            print(f"player 2 wins {self.player1.cards[0]['name']}!")
+            return self.player2  # return self.player1.cards[0]
         else:
             print("it is a draw!")
             return "it is a draw!"
