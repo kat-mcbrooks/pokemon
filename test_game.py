@@ -50,3 +50,9 @@ def test_update_points_player1(game):
 def test_update_points_player2(game):
     game.update_points(game.player2)
     assert game.player2.points == 10
+
+
+def test_declare_winner(game):
+    for _ in range(5):
+        game.update_points(game.player2)
+    assert game.declare_winner() == "player 2 has won the game!"

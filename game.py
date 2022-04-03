@@ -16,6 +16,12 @@ class Game:
             winner = self.compare_stat("hp")
             self.update_decks(winner)
             self.update_points
+        self.declare_winner()
+
+    def declare_winner(self):
+        return (
+            "player 1 has won the game!" if self.player1.points > self.player2.points else "player 2 has won the game!"
+        )
 
     def update_points(self, winning_player):
         if winning_player == self.player1:
