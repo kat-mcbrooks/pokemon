@@ -1,7 +1,6 @@
 from pokemon import Pokemon
 from player import Player
 from deck import Deck
-import random
 
 
 class Game:
@@ -14,7 +13,8 @@ class Game:
         self.generate_hands()
         # loop the steps that make up one round of the game, until either player reaches 50 points
         while (self.player1.points < 50) and (self.player2.points < 50):
-            winner = self.compare_stat("hp")
+            print("NEXT ROUND...")
+            winner = self.compare_stat("hp")  # returns winning_player or 0 if its a draw
             self.update_decks(winner)
             self.update_points(winner)
         self.declare_winner()
@@ -27,6 +27,9 @@ class Game:
         return self.player1 if self.player1.points > self.player2.points else self.player2
 
     def update_points(self, winning_player):
+        if winning_player == 0:  # skip the update points if it is a draw
+            return
+
         if winning_player == self.player1:
             self.player1.points += 10
             print(
@@ -49,20 +52,23 @@ class Game:
         """
         removes losing card from losing player's deck and adds it to the winning player's deck. Moves winning card to the end of winning player's deck.
         """
-        if winning_player == 0:
+        if winning_player == 0:  # skip the update decks if it is a draw
+            self.player1.cards.append(self.player1.cards[0])
+            self.player1.cards.pop(0)
+            self.player2.cards.append(self.player2.cards[0])
+            self.player2.cards.pop(0)
             return
         winning_card = winning_player.cards[0]
         if winning_player == self.player1:
             losing_card = self.player2.cards[0]
-            self.player2.cards.pop(0)
+            self.player2.cards.pop(0)  # remove losing card from player2 hand
         elif winning_player == self.player2:
             losing_card = self.player1.cards[0]
-            winning_card = self.player2.cards[0]
             self.player1.cards.pop(0)  # remove losing card from player1 deck
 
         winning_player.cards.append(losing_card)
-        winning_player.cards.pop(0)
         winning_player.cards.append(winning_card)
+        winning_player.cards.pop(0)
 
     def compare_stat(self, stat):
         """
@@ -74,10 +80,10 @@ class Game:
         self.print_stats(self.player1.cards[0], self.player2.cards[0])
         if player1_stat > player2_stat:
             print(f"player 1 wins {self.player2.cards[0]['name']}!")
-            return self.player1  # return self.player2
+            return self.player1
         elif player1_stat < player2_stat:
             print(f"player 2 wins {self.player1.cards[0]['name']}!")
-            return self.player2  # return self.player1
+            return self.player2
         else:
             print("it is a draw!")
             return 0
@@ -89,5 +95,5 @@ class Game:
         )
 
 
-# game = Game()
-# game.play()
+game = Game()
+game.play()
