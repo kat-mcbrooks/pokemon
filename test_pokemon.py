@@ -32,4 +32,4 @@ def test_get_stat_hp(squirtle):
 
 
 def test_get_stat_name(squirtle):
-    assert squirtle.get_stat("name") == "squirtle"
+    assert squirtle.get_stat("name") == "Squirtle"
