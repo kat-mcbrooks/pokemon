@@ -9,25 +9,24 @@ After completing CodeFirstGirls Python Kickstarter course, I created a Top Trump
 1. Launch your environment e.g.
 
 ```
-Pipenv shell
+$ Pipenv shell
 ```
 
 2. Install dependencies listed in the pipfile (using Pip or Pipenv) e.g.
 
 ```
-Pipenv install
+$ Pipenv install
 ```
 
 3. Run the game on the command line:
 
 ```
-python
+$ python3 game.py
+```
+
 ### To run the tests:
 After installing project dependencies as in the above instructions (using pip or pipenv)
 ```
-
-Pytest
-
-```
+$ Pytest
 
 ```
