@@ -12,12 +12,26 @@ class Game:
     def play(self):
         self.generate_hands()
         # loop the steps that make up one round of the game, until either player reaches 50 points
+        round_count = 0  # track the round number so we can alternative which player chooses the stat
         while (self.player1.points < 50) and (self.player2.points < 50):
             print("NEXT ROUND...")
-            winner = self.compare_stat("hp")  # returns winning_player or 0 if its a draw
+            chosen_stat = self.get_player_input_stat(round_count)
+            winner = self.compare_stat(chosen_stat)  # returns winning_player or 0 if its a draw
             self.update_decks(winner)
             self.update_points(winner)
+            round_count += 1
         self.declare_winner()
+
+    def get_player_input_stat(self, round):
+        if round % 2 == 0:
+            player = "Player1"
+        else:
+            player = "Player2"
+        # print(f"{player} Please choose a pokemon stat from the following hp, experience, height, weight or speed")
+        chosen_stat = input(
+            f"{player} please choose a pokemon stat from the following hp, experience, height, weight or speed:\n"
+        )
+        return chosen_stat.lower()
 
     def declare_winner(self):
         if self.player1.points > self.player2.points:
@@ -96,7 +110,4 @@ class Game:
 
 
 game = Game()
-game.generate_hands()
-print(game.deck.cards[0])
-# game.player1.cards[0].data
-# game.player2.cards[0].data
+game.play()

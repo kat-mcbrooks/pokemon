@@ -30,7 +30,8 @@ thanks to the random.seed, we guarantee that player 1 card is always clefairy an
 {'name': 'Pikachu', 'hp': 35, 'experience': 112, 'height': 4, 'weight': 60, 'speed': 90}
 """
 
-
+# def test_choose_stat(game):
+#     assert
 def test_compare_pokemon_stat_hp_returns_player_with_highest_value(game):
     assert game.compare_stat("hp") == game.player1
 
