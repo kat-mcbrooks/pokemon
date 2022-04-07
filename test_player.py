@@ -5,7 +5,11 @@ from player import Player
 @pytest.fixture
 def player():
     """returns a player instance"""
-    return Player()
+    return Player("Kat")
+
+
+def test_has_name(player):
+    assert player.name == "Kat"
 
 
 def test_cards_can_be_added(player):

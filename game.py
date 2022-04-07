@@ -4,7 +4,7 @@ from deck import Deck
 
 
 class Game:
-    def __init__(self, player1=Player(), player2=Player(), deck=Deck()):
+    def __init__(self, player1=Player("Player 1"), player2=Player("Player 2"), deck=Deck()):
         self.player1 = player1
         self.player2 = player2
         self.deck = deck
@@ -13,31 +13,35 @@ class Game:
         self.generate_hands()
         # loop the steps that make up one round of the game, until either player reaches 50 points
         round_count = 0  # track the round number so we can alternative which player chooses the stat
+        print("FIRST ROUND...")
         while (self.player1.points < 50) and (self.player2.points < 50):
-            print("NEXT ROUND...")
+            print(f"{self.player1.cards[0]['name']} vs. {self.player2.cards[0]['name']}")
             chosen_stat = self.get_player_input_stat(round_count)
             winner = self.compare_stat(chosen_stat)  # returns winning_player or 0 if its a draw
             self.update_decks(winner)
             self.update_points(winner)
             round_count += 1
+            print(f"NEXT ROUND, ROUND NO.{round_count}:")
         self.declare_winner()
 
     def get_player_input_stat(self, round):
         if round % 2 == 0:
-            player = "Player1"
+            player = self.player1.name
+            pokemon = self.player1.cards[0]["name"]
         else:
-            player = "Player2"
+            player = self.player2.name
+            pokemon = self.player2.cards[0]["name"]
         # print(f"{player} Please choose a pokemon stat from the following hp, experience, height, weight or speed")
         chosen_stat = input(
-            f"{player} please choose a pokemon stat from the following hp, experience, height, weight or speed:\n"
+            f"{player}, choose a pokemon stat for this battle. What do you think {pokemon} is strongest in? You can choose hp, experience, height, weight or speed:\n"
         )
         return chosen_stat.lower()
 
     def declare_winner(self):
         if self.player1.points > self.player2.points:
-            print("Player 1 has won the game!")
+            print(f"{self.player1.name} has won the game!")
         else:
-            print("Player 2 has won the game!")
+            print(f"{self.player2.name} has won the game!")
         return self.player1 if self.player1.points > self.player2.points else self.player2
 
     def update_points(self, winning_player):
@@ -47,12 +51,12 @@ class Game:
         if winning_player == self.player1:
             self.player1.points += 10
             print(
-                f"Current scores:\nPlayer one: {self.player1.points} points\nPlayer two: {self.player2.points} points"
+                f"Current scores:\n{self.player1.name}: {self.player1.points} points\n{self.player2.name}: {self.player2.points} points"
             )
         elif winning_player == self.player2:
             self.player2.points += 10
             print(
-                f"Current scores:\nPlayer one: {self.player1.points} points.\nPlayer two: {self.player2.points} points"
+                f"Current scores:\n{self.player1.name}: {self.player1.points} points.\n{self.player2.name}: {self.player2.points} points"
             )
 
     def generate_hands(self):
@@ -91,23 +95,23 @@ class Game:
 
         player1_stat = self.player1.cards[0][stat]
         player2_stat = self.player2.cards[0][stat]
+
         self.print_stats(self.player1.cards[0], self.player2.cards[0], stat)
         if player1_stat > player2_stat:
-            print(f"player 1 wins {self.player2.cards[0]['name']}!")
+            print(f"{self.player1.name} wins {self.player2.cards[0]['name']}!")
             return self.player1
         elif player1_stat < player2_stat:
-            print(f"player 2 wins {self.player1.cards[0]['name']}!")
+            print(f"{self.player2.name} wins {self.player1.cards[0]['name']}!")
             return self.player2
         else:
             print("it is a draw!")
             return 0
 
     def print_stats(self, player1_card, player2_card, stat):
-        print(f"{player1_card['name']} vs. {player2_card['name']}")
         print(
-            f"{player1_card['name']} has {player1_card['hp']} {stat} | {player2_card['name']} has {player2_card['hp']} {stat}"
+            f"{player1_card['name']} has {player1_card[stat]} {stat} | {player2_card['name']} has {player2_card[stat]} {stat}"
         )
 
 
-game = Game()
+game = Game(player1=Player("Kat"), player2=Player("Jonty"))
 game.play()

@@ -25,8 +25,15 @@ $ python3 game.py
 ```
 
 ### To run the tests:
+
 After installing project dependencies as in the above instructions (using pip or pipenv)
+
 ```
 $ Pytest
 
 ```
+
+### Screenshots of the game running on the command line
+
+![Game beginning](./assets/Poke-game1.PNG)
+![Game ending](./assets/Poke-game2.PNG)
