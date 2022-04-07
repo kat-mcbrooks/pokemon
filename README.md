@@ -35,5 +35,5 @@ $ Pytest
 
 ### Screenshots of the game running on the command line
 
-![Game beginning](./assets/Poke-game1.PNG)
-![Game ending](./assets/Poke-game2.PNG)
+![Game beginning](./assets/Poke-game1.png)
+![poke-game2](./assets/poke-game2.png)
