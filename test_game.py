@@ -24,14 +24,31 @@ def test_generate_hands_gives_player2_10_cards(game):
     assert len(game.player2.cards) == 10
 
 
+"""
+thanks to the random.seed, we guarantee that player 1 card is always clefairy and player 2 card is always pikachu:
+{'name': 'Clefairy', 'hp': 70, 'experience': 113, 'height': 6, 'weight': 75, 'speed': 35}
+{'name': 'Pikachu', 'hp': 35, 'experience': 112, 'height': 4, 'weight': 60, 'speed': 90}
+"""
+
+
 def test_compare_pokemon_stat_hp_returns_player_with_highest_value(game):
-    assert (
-        game.compare_stat("hp") == game.player1
-    )  # thanks to the random.seed, we guarantee that player 1 card is always clefairy (hp:70 ) and player 2 card is always pikachu (hp:35 )
+    assert game.compare_stat("hp") == game.player1
+
+
+def test_compare_pokemon_stat_experience_returns_player_with_highest_value(game):
+    assert game.compare_stat("experience") == game.player1
+
+
+def test_compare_pokemon_stat_height_returns_player_with_highest_value(game):
+    assert game.compare_stat("height") == game.player1
+
+
+def test_compare_pokemon_stat_weight_returns_player_with_highest_value(game):
+    assert game.compare_stat("weight") == game.player1
 
 
 def test_compare_pokemon_stat_speed_returns_player_with_highest_value(game):
-    assert game.compare_stat("speed") == game.player1
+    assert game.compare_stat("speed") == game.player2
 
 
 def test_update_decks_gives_winner_the_card(game):

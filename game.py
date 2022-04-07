@@ -77,7 +77,7 @@ class Game:
 
         player1_stat = self.player1.cards[0][stat]
         player2_stat = self.player2.cards[0][stat]
-        self.print_stats(self.player1.cards[0], self.player2.cards[0])
+        self.print_stats(self.player1.cards[0], self.player2.cards[0], stat)
         if player1_stat > player2_stat:
             print(f"player 1 wins {self.player2.cards[0]['name']}!")
             return self.player1
@@ -88,10 +88,10 @@ class Game:
             print("it is a draw!")
             return 0
 
-    def print_stats(self, player1_card, player2_card):
+    def print_stats(self, player1_card, player2_card, stat):
         print(f"{player1_card['name']} vs. {player2_card['name']}")
         print(
-            f"{player1_card['name']} has {player1_card['hp']} hp | {player2_card['name']} has {player2_card['hp']} hp"
+            f"{player1_card['name']} has {player1_card['hp']} {stat} | {player2_card['name']} has {player2_card['hp']} {stat}"
         )
 
 
