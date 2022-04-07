@@ -96,4 +96,7 @@ class Game:
 
 
 game = Game()
-game.play()
+game.generate_hands()
+print(game.deck.cards[0])
+# game.player1.cards[0].data
+# game.player2.cards[0].data

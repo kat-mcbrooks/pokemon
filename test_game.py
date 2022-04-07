@@ -16,18 +16,22 @@ def game():
     return game
 
 
-def test_generate_hands_gives_10_cards_player1(game):
+def test_generate_hands_gives_player1_10_cards(game):
     assert len(game.player1.cards) == 10
 
 
-def test_generate_hands_gives_10_cards_player2(game):
+def test_generate_hands_gives_player2_10_cards(game):
     assert len(game.player2.cards) == 10
 
 
-def test_compare_pokemon_stat(game):
+def test_compare_pokemon_stat_hp_returns_player_with_highest_value(game):
     assert (
         game.compare_stat("hp") == game.player1
     )  # thanks to the random.seed, we guarantee that player 1 card is always clefairy (hp:70 ) and player 2 card is always pikachu (hp:35 )
+
+
+def test_compare_pokemon_stat_speed_returns_player_with_highest_value(game):
+    assert game.compare_stat("speed") == game.player1
 
 
 def test_update_decks_gives_winner_the_card(game):
