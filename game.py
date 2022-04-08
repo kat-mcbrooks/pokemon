@@ -113,5 +113,7 @@ class Game:
         )
 
 
-game = Game(player1=Player("Kat"), player2=Player("Jonty"))
-game.play()
+# when Python interpreter reads a file, it defines the __name__ variable. If game.py is ran as the main program i.e. $ python game.py, it will assign '__main__' but if game.py is imported e.g. in test files, it will assign __name__ = 'game' and therefore won't run the game script, which is what we want.
+if __name__ == "__main__":
+    game = Game(player1=Player("Kat"), player2=Player("Jonty"))
+    game.play()

@@ -8,7 +8,7 @@ from deck import Deck
 @pytest.fixture
 def game():
     """Returns a Game instance"""
-    game = Game(Player(), Player(), Deck())
+    game = Game(Player("Kat"), Player("Jonty"), Deck())
     random.seed(
         1
     )  # stubbing the random here means the generate_hands will always return the same list of pokemon. This means player1 always wins first card
